@@ -15,13 +15,13 @@
 
 ## 🗂️ Kanban Board
 
-| To Do ✅               | In Progress 🔧          | Done 🎉                    |
-| ---------------------- | ----------------------- | -------------------------- |
-|                        |                         | Homepage check             |
-|                        |                         | Data fetch & storage       |
-|                        |                         | Carousel & title insertion |
-|                        | Product card generation |                            |
-| Favorite functionality |                         |                            |
-| Open in new tab        |                         |                            |
-| Responsive design      |                         |                            |
-| Code refactoring       |                         |                            |
+| To Do ✅          | In Progress 🔧         | Done 🎉                    |
+| ----------------- | ---------------------- | -------------------------- |
+|                   |                        | Homepage check             |
+|                   |                        | Data fetch & storage       |
+|                   |                        | Carousel & title insertion |
+|                   |                        | Product card generation    |
+|                   | Favorite functionality |                            |
+| Open in new tab   |                        |                            |
+| Responsive design |                        |                            |
+| Code refactoring  |                        |                            |

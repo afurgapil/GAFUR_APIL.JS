@@ -41,3 +41,7 @@ This `Changelog.md` file documents the thought process, implementation steps, an
 > Another important point to note is that the existing styles might affect the elements within our new section. To proceed more safely, it would be beneficial to use a "custom" prefix in naming to isolate our styles.
 
 > After this preparation, we can create the banner and carousel structure with the correct dimensions. A potential issue here is that the carousel arrows are defined as static SVG images. We can solve this by downloading the SVG source files and embedding their inline SVG code directly into our section.
+
+## Step 6
+
+> Development continues with the product cards. We use the fetched data in a suitable style. As mock data, we included the rating and number of reviews. The static badge PNG images found on the site were converted to SVG and implemented directly into our code. Similarly, the button images used for favorites were also converted to SVG and integrated. We handled the display of discounted prices by checking for the existence of such a case.
