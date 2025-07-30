@@ -25,3 +25,9 @@ This `Changelog.md` file documents the thought process, implementation steps, an
 > Since 3rd party tools were not allowed in this project, styling solutions like SCSS modules were avoided. Instead, pure CSS was used with attention to responsive design.
 
 > Although jQuery was permitted, it was considered unnecessary, as all required functionality could be achieved using vanilla JavaScript.
+
+## Step 4
+
+> The process of data fetching and saving to localStorage is continued by defining a function named loadData. First, localStorage is checked using a predefined localKey. If a dataset with a matching ID is found, it is retrieved from localStorage. If no matching entry exists, the data is fetched remotely via a GET request and then stored in localStorage.
+
+> A manual verification is performed by logging the number of elements in the dataset. Since the dataset is expected to be dynamic, no hard-coded validation is applied. However, two if statements are included to ensure that an array is received and that it is not empty.

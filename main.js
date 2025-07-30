@@ -14,6 +14,7 @@
   const self = {};
 
   const init = () => {
+    self.loadData();
     self.buildHTML();
     self.buildCSS();
     self.setEvents();
@@ -59,5 +60,38 @@
       });
   };
 
+  self.loadData = () => {
+    const url =
+      "https://gist.githubusercontent.com/sevindi/8bcbde9f02c1d4abe112809c974e1f49/raw/9bf93b58df623a9b16f1db721cd0a7a539296cf0/products.json";
+    const localKey = "carousel-products";
+
+    const cached = localStorage.getItem(localKey);
+
+    if (cached) {
+      self.products = JSON.parse(cached);
+      console.log("[ProductCarousel] Loaded products from localStorage");
+      console.log("[ProductCarousel] Product count:", self.products.length);
+      self.products = JSON.parse(cached);
+      if (!Array.isArray(self.products) || self.products.length === 0) {
+        console.error("[ProductCarousel] No products found in localStorage");
+        return;
+      }
+      return;
+    }
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("[ProductCarousel] Fetched products from remote");
+        console.log("[ProductCarousel] Product count:", data.length);
+        if (!Array.isArray(data) || data.length === 0) {
+          console.error("[ProductCarousel] No products fetched from remote");
+          return;
+        }
+        self.products = data;
+        localStorage.setItem(localKey, JSON.stringify(data));
+      })
+      .catch((err) => console.error("Fetch error:", err));
+  };
   init();
 })();
