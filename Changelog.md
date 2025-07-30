@@ -45,3 +45,7 @@ This `Changelog.md` file documents the thought process, implementation steps, an
 ## Step 6
 
 > Development continues with the product cards. We use the fetched data in a suitable style. As mock data, we included the rating and number of reviews. The static badge PNG images found on the site were converted to SVG and implemented directly into our code. Similarly, the button images used for favorites were also converted to SVG and integrated. We handled the display of discounted prices by checking for the existence of such a case.
+
+## Step 7
+
+> We use localStorage for the "add to favorites" function. However, since there is no filled heart icon available on the e-bebek site, we couldn't implement that feature. Instead, we use the hover version of the icon as a workaround.

@@ -325,6 +325,18 @@
       display: block !important;
     }
 
+    .custom-favorite-btn.is-favorite .normal-heart {
+      display: none !important;
+    }
+
+    .custom-favorite-btn.is-favorite .hover-heart {
+      display: block !important;
+    }
+
+    .custom-favorite-btn.is-favorite:hover .hover-heart {
+      display: block !important;
+    }
+
 
 
     .custom-carousel-outer-container .custom-swiper-prev,
@@ -548,7 +560,7 @@
             <a class="custom-card-link" href="${p.url}" target="_blank">
               <div class="custom-card-image">
                 <img src="${p.img}" alt="${p.name}" />
-                <button class="custom-favorite-btn">
+                <button class="custom-favorite-btn" data-product-id="${p.id}">
                   <svg class="normal-heart" width="26" height="23" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="Group 3">
                       <g id="heart">
@@ -684,6 +696,13 @@
       .join("");
 
     wrapper.innerHTML = html;
+
+    self.products.forEach((product) => {
+      const button = wrapper.querySelector(`[data-product-id="${product.id}"]`);
+      if (button) {
+        self.updateFavoriteButton(button, product.id);
+      }
+    });
   };
 
   self.setEvents = () => {
@@ -708,6 +727,73 @@
           .querySelector(".custom-carousel-content")
           ?.scrollBy({ left: 300, behavior: "smooth" });
       });
+    }
+
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".custom-favorite-btn")) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const button = e.target.closest(".custom-favorite-btn");
+        const productId = button.dataset.productId;
+
+        if (productId) {
+          self.toggleFavorite(productId);
+          self.updateFavoriteButton(button, productId);
+        }
+      }
+    });
+  };
+
+  self.getFavorites = () => {
+    try {
+      const favorites = localStorage.getItem("custom-favorites");
+      return favorites ? JSON.parse(favorites) : [];
+    } catch (e) {
+      console.warn("Error reading favorites from localStorage:", e);
+      return [];
+    }
+  };
+
+  self.saveFavorites = (favorites) => {
+    try {
+      localStorage.setItem("custom-favorites", JSON.stringify(favorites));
+    } catch (e) {
+      console.warn("Error saving favorites to localStorage:", e);
+    }
+  };
+
+  self.toggleFavorite = (productId) => {
+    const favorites = self.getFavorites();
+    const index = favorites.indexOf(productId);
+
+    if (index > -1) {
+      favorites.splice(index, 1);
+    } else {
+      favorites.push(productId);
+    }
+
+    self.saveFavorites(favorites);
+  };
+
+  self.isFavorite = (productId) => {
+    const favorites = self.getFavorites();
+    return favorites.includes(productId);
+  };
+
+  self.updateFavoriteButton = (button, productId) => {
+    const isFav = self.isFavorite(productId);
+    const normalHeart = button.querySelector(".normal-heart");
+    const hoverHeart = button.querySelector(".hover-heart");
+
+    if (isFav) {
+      if (normalHeart) normalHeart.style.display = "none";
+      if (hoverHeart) hoverHeart.style.display = "block";
+      button.classList.add("is-favorite");
+    } else {
+      if (normalHeart) normalHeart.style.display = "block";
+      if (hoverHeart) hoverHeart.style.display = "none";
+      button.classList.remove("is-favorite");
     }
   };
 
