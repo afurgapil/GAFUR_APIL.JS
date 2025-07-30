@@ -49,3 +49,9 @@ This `Changelog.md` file documents the thought process, implementation steps, an
 ## Step 7
 
 > We use localStorage for the "add to favorites" function. However, since there is no filled heart icon available on the e-bebek site, we couldn't implement that feature. Instead, we use the hover version of the icon as a workaround.
+
+## Step 8
+
+> I was preparing a custom detail page using the data we fetched so that users could access the product detail page. However, during development, the e-bebek website went into scheduled maintenance, which made it impossible to test the project. The related screenshot is available here:
+
+https://hizliresim.com/9iykg6x
